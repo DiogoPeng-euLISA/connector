@@ -1,0 +1,7 @@
+{
+    "jacocoXmlReportPath": "target/site/jacoco/jacoco.xml",
+    "dockerImage": "scm.ecodex.eu/docker/testingCI:latest",
+    "mavenSbomPath": "dist/sbom.json",
+    "mavenArtifactPath": "dist/",
+    "mavenParameters": "-DskipTests -Pproduction"
+}
