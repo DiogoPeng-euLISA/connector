@@ -1,5 +1,6 @@
 #MAIN-WORKFLOW - CTP-AUTOMATED-TESTING
 # This workflow is used to run the CI pipeline for the connector project.
+#
 on:
   workflow_dispatch:
         inputs:
@@ -42,9 +43,7 @@ on:
               required: false
               default: false
               type: boolean
-  push:
-  pull_request:
-  merge_group:
+
 name: CI Pipeline
 jobs:
   CI:
@@ -57,6 +56,7 @@ jobs:
       run_qodana: ${{ fromJSON(github.event.inputs.run_qodana || 'false') }}
       run_docker: ${{ fromJSON(github.event.inputs.run_docker || 'false') }}
       run_maven_publish: ${{ fromJSON(github.event.inputs.run_maven_publish || 'false') }}
+    secrets: inherit
    
   debug:
     runs-on: ubuntu-latest
@@ -74,17 +74,3 @@ jobs:
             echo "GITHUB_REF=$GITHUB_REF"
             echo "GITHUB_REF_NAME=$GITHUB_REF_NAME"
             echo "GITHUB_SHA=$GITHUB_SHA"
-
-
-        
-  call-ctp-automated-testing:
-    uses: e-CODEX/workflows/.github/workflows/ctp-automated-testing.yml@ctp-automated-testing
-    with:
-      java_version: ${{ github.event.inputs.java_version }}
-      run_test: ${{ fromJSON(github.event.inputs.run_test || 'false') }}
-      run_sonarcloud: ${{ fromJSON(github.event.inputs.run_sonarcloud || 'false') }}
-      run_codeql: ${{ fromJSON(github.event.inputs.run_codeql || 'false') }}
-      run_qodana: ${{ fromJSON(github.event.inputs.run_qodana || 'false') }}
-      run_docker: ${{ fromJSON(github.event.inputs.run_docker || 'false') }}
-      run_maven_publish: ${{ fromJSON(github.event.inputs.run_maven_publish || 'false') }}
-    secrets: inherit
