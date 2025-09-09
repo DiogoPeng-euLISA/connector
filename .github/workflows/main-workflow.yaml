@@ -63,18 +63,17 @@ jobs:
     steps:
       - name: Debug info
         run: |
-          echo "Run Tests: ${{ inputs.run_test }}"
-          echo "Run SonarCloud: ${{ inputs.run_sonarcloud }}"
-          echo "Run CodeQL: ${{ inputs.run_codeql }}"
-          echo "Run Qodana: ${{ inputs.run_qodana }}"
-          echo "Run Docker: ${{ inputs.run_docker }}"
-          echo "Run Maven Publish: ${{ inputs.run_maven_publish }}"
-          echo "Java.js Version: ${{ inputs.java_version }}"
-          echo "Docker Image: ${{ inputs.docker_image }}"
-          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
-          echo "GITHUB_REF=$GITHUB_REF"
-          echo "GITHUB_REF_NAME=$GITHUB_REF_NAME"
-          echo "GITHUB_SHA=$GITHUB_SHA"
+            echo "Run Tests: ${{ fromJSON(github.event.inputs.run_test || 'false') }}"
+            echo "Run SonarCloud: ${{ fromJSON(github.event.inputs.run_sonarcloud || 'false') }}"
+            echo "Run CodeQL: ${{ fromJSON(github.event.inputs.run_codeql || 'false') }}"
+            echo "Run Qodana: ${{ fromJSON(github.event.inputs.run_qodana || 'false') }}"
+            echo "Run Docker: ${{ fromJSON(github.event.inputs.run_docker || 'false') }}"
+            echo "Run Maven Publish: ${{ fromJSON(github.event.inputs.run_maven_publish || 'false') }}"
+            echo "Java Version: ${{ github.event.inputs.java_version || '21' }}"
+            echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+            echo "GITHUB_REF=$GITHUB_REF"
+            echo "GITHUB_REF_NAME=$GITHUB_REF_NAME"
+            echo "GITHUB_SHA=$GITHUB_SHA"
 
 
         
