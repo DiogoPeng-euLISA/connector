@@ -46,6 +46,7 @@ permissions:
   security-events: write
   actions: read
   checks: write
+  attestations: write
 
 jobs:
   CI:
