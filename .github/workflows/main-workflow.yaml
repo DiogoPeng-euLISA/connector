@@ -39,6 +39,10 @@ on:
         default: false
         type: boolean
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   CI:
     uses: e-CODEX/workflows/.github/workflows/ctp-automated-testing.yml@ctp-automated-testing
